@@ -10,6 +10,12 @@
 </head>
 <body>
     <div id="svg-editor">
+        <div id="canvas-container">
+            <!-- SVG canvas where shapes will be drawn -->
+            <svg id="svg-canvas" xmlns="http://www.w3.org/2000/svg">
+                <!-- SVG shapes will be added here dynamically -->
+            </svg>
+        </div>
         <div id="toolbox">
             <!-- Tool buttons with icons for drawing shapes -->
             <button id="draw-rectangle"><i class="fas fa-square"></i></button>
@@ -17,12 +23,6 @@
             <button id="draw-path"><i class="fas fa-draw-polygon"></i></button>
             <button id="edit-properties"><i class="fas fa-cog"></i></button>
             <button id="save-svg"><i class="fas fa-download"></i></button>
-        </div>
-        <div id="canvas-container">
-            <!-- SVG canvas where shapes will be drawn -->
-            <svg id="svg-canvas" xmlns="http://www.w3.org/2000/svg">
-                <!-- SVG shapes will be added here dynamically -->
-            </svg>
         </div>
     </div>
     
