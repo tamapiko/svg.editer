@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", function() {
         if (selectedTool === "draw-rectangle") {
             // Example: Drawing a rectangle
             const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-            rect.setAttribute("x", event.clientX);
-            rect.setAttribute("y", event.clientY);
+            rect.setAttribute("x", event.clientX - svgCanvas.getBoundingClientRect().left);
+            rect.setAttribute("y", event.clientY - svgCanvas.getBoundingClientRect().top);
             rect.setAttribute("width", "50");
             rect.setAttribute("height", "50");
             rect.setAttribute("fill", "blue");
@@ -29,15 +29,15 @@ document.addEventListener("DOMContentLoaded", function() {
         } else if (selectedTool === "draw-circle") {
             // Example: Drawing a circle
             const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-            circle.setAttribute("cx", event.clientX);
-            circle.setAttribute("cy", event.clientY);
+            circle.setAttribute("cx", event.clientX - svgCanvas.getBoundingClientRect().left);
+            circle.setAttribute("cy", event.clientY - svgCanvas.getBoundingClientRect().top);
             circle.setAttribute("r", "25");
             circle.setAttribute("fill", "red");
             svgCanvas.appendChild(circle);
         } else if (selectedTool === "draw-path") {
             // Example: Drawing a path (using D3.js or SVG.js for more complex paths)
             const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            path.setAttribute("d", `M ${event.clientX} ${event.clientY} L ${event.clientX + 50} ${event.clientY + 50}`);
+            path.setAttribute("d", `M ${event.clientX - svgCanvas.getBoundingClientRect().left} ${event.clientY - svgCanvas.getBoundingClientRect().top} L ${event.clientX - svgCanvas.getBoundingClientRect().left + 50} ${event.clientY - svgCanvas.getBoundingClientRect().top + 50}`);
             path.setAttribute("stroke", "green");
             path.setAttribute("stroke-width", "2");
             path.setAttribute("fill", "none");
