@@ -17,31 +17,35 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // SVG canvas click handler for drawing shapes
     svgCanvas.addEventListener("click", function(event) {
+        const rect = svgCanvas.getBoundingClientRect();
+        const offsetX = event.clientX - rect.left;
+        const offsetY = event.clientY - rect.top;
+        
         if (selectedTool === "draw-rectangle") {
             // Example: Drawing a rectangle
-            const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-            rect.setAttribute("x", event.clientX - svgCanvas.getBoundingClientRect().left);
-            rect.setAttribute("y", event.clientY - svgCanvas.getBoundingClientRect().top);
-            rect.setAttribute("width", "50");
-            rect.setAttribute("height", "50");
-            rect.setAttribute("fill", "blue");
-            svgCanvas.appendChild(rect);
+            const rectEl = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            rectEl.setAttribute("x", offsetX - 25);
+            rectEl.setAttribute("y", offsetY - 25);
+            rectEl.setAttribute("width", "50");
+            rectEl.setAttribute("height", "50");
+            rectEl.setAttribute("fill", "blue");
+            svgCanvas.appendChild(rectEl);
         } else if (selectedTool === "draw-circle") {
             // Example: Drawing a circle
-            const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-            circle.setAttribute("cx", event.clientX - svgCanvas.getBoundingClientRect().left);
-            circle.setAttribute("cy", event.clientY - svgCanvas.getBoundingClientRect().top);
-            circle.setAttribute("r", "25");
-            circle.setAttribute("fill", "red");
-            svgCanvas.appendChild(circle);
+            const circleEl = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            circleEl.setAttribute("cx", offsetX);
+            circleEl.setAttribute("cy", offsetY);
+            circleEl.setAttribute("r", "25");
+            circleEl.setAttribute("fill", "red");
+            svgCanvas.appendChild(circleEl);
         } else if (selectedTool === "draw-path") {
             // Example: Drawing a path (using D3.js or SVG.js for more complex paths)
-            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            path.setAttribute("d", `M ${event.clientX - svgCanvas.getBoundingClientRect().left} ${event.clientY - svgCanvas.getBoundingClientRect().top} L ${event.clientX - svgCanvas.getBoundingClientRect().left + 50} ${event.clientY - svgCanvas.getBoundingClientRect().top + 50}`);
-            path.setAttribute("stroke", "green");
-            path.setAttribute("stroke-width", "2");
-            path.setAttribute("fill", "none");
-            svgCanvas.appendChild(path);
+            const pathEl = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            pathEl.setAttribute("d", `M ${offsetX} ${offsetY} L ${offsetX + 50} ${offsetY + 50}`);
+            pathEl.setAttribute("stroke", "green");
+            pathEl.setAttribute("stroke-width", "2");
+            pathEl.setAttribute("fill", "none");
+            svgCanvas.appendChild(pathEl);
         }
     });
     
