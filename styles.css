@@ -15,7 +15,8 @@ body, html {
 #canvas-container {
     flex: 1;
     position: relative;
-    overflow: auto;
+    overflow: hidden;
+    background-color: #f8f8f8;
 }
 
 #svg-canvas {
@@ -31,17 +32,33 @@ body, html {
     align-items: center;
     background-color: #f0f0f0;
     padding: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#property-panel {
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f0f0;
+    padding: 10px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
 button {
     background: none;
     border: none;
-    font-size: 20px;
+    font-size: 24px;
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
+button:hover {
+    color: #007bff;
+}
+
 button i {
-    pointer-events: none; /* Ensures icon clicks do not interfere with button clicks */
+    pointer-events: none;
+}
+
+label, input {
+    margin: 5px 0;
 }
