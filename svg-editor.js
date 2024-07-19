@@ -142,4 +142,20 @@ document.addEventListener("DOMContentLoaded", function() {
             event.preventDefault();
             const touch = event.touches[0];
             const rect = svgCanvas.getBoundingClientRect();
-           
+            const x = touch.clientX - rect.left - offset.x;
+            const y = touch.clientY - rect.top - offset.y;
+
+            if (selectedElementForDrag.tagName === "rect") {
+                selectedElementForDrag.setAttribute("x", x);
+                selectedElementForDrag.setAttribute("y", y);
+            } else if (selectedElementForDrag.tagName === "circle") {
+                selectedElementForDrag.setAttribute("cx", x + offset.x);
+                selectedElementForDrag.setAttribute("cy", y + offset.y);
+            }
+        }
+    }
+
+    function endDrag() {
+        selectedElementForDrag = null;
+    }
+});
